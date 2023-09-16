@@ -35,6 +35,7 @@
             />
           </swiper-slide>
         </swiper>
+      <div v-if="kedi">
         <div
           v-if="controls"
           :class="`custom-controls-container show-on-hover ${controlsClass}`"
@@ -64,7 +65,8 @@
         </div>
       </div>
     </div>
-    <div v-if="workSliderVisible" ref="customNumbersSlider" class="sm:flex px-4 sm:px-0 mb-1 whitespace-nowrap overflow-x-scroll hide-scrollbars">
+  </div>
+    <div v-if="workSliderVisible && kedi" ref="customNumbersSlider" class="sm:flex px-4 sm:px-0 mb-1 whitespace-nowrap overflow-x-scroll hide-scrollbars">
       <Number
         v-for="(slide, i) in allShuffledWorks"
         :key="i"
@@ -126,6 +128,7 @@ export default {
   },
   data () {
     return {
+      kedi: false,
       workDocuments: null,
       workSliderVisible: false,
       allShuffledWorks: [],
@@ -165,6 +168,9 @@ export default {
     ]
     allSlices = this.shuffle(allSlices).slice(0, this.field.primary.amount_of_works)
     this.allShuffledWorks = allSlices.flat()
+    if (this.allShuffledWorks.length > 1) {
+      this.kedi = true
+    }
   },
   computed: {
     activeWork () {
@@ -212,7 +218,6 @@ export default {
     }
   },
   mounted () {
-    console.log(this.controls)
   },
   methods: {
     getSeriesForWork (index) {

@@ -49,7 +49,6 @@ export default {
     ...mapState(['main'])
   },
   mounted () {
-    console.log('mount index')
   }
 }
 </script>
