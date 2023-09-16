@@ -1,0 +1,9 @@
+{
+  "eslint.enable": true,
+  "workbench.preferredDarkColorTheme": "Solarized Dark",
+  "workbench.colorTheme": "dark-plus-syntax",
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  },
+  "eslint.validate": ["javascript"]
+}

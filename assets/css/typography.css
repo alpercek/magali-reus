@@ -1,0 +1,88 @@
+.text-magali {
+  @apply transition-colors duration-75;
+}
+
+.nuxt-link-exact-active {
+  @apply text-magali;
+}
+
+.header {
+  @apply font-bold;
+  font-size: 12pt;
+}
+
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  @apply transition-colors;
+}
+
+.tight {
+  letter-spacing: -0.3px;
+}
+
+p {
+  a {
+    @apply underline font-bold;
+  }
+}
+
+.paragraph,
+p {
+  p {
+    @apply mb-4;
+  }
+}
+
+.icon {
+  @apply pl-1 select-none;
+  font-size: 12pt;
+  flex-shrink: 0;
+  margin-top: -1px;
+  text-align: center;
+
+  &.small {
+    margin-top: 1px;
+    font-size: 14px;
+  }
+}
+
+@screen md {
+  .collapsible {
+    @apply pr-4;
+  }
+}
+
+.cv_section {
+  @apply mb-8;
+
+  table {
+    @apply table table-fixed;
+    table-layout: fixed;
+
+    p {
+      max-width: 120ch;
+    }
+
+    &.compact {
+      * {
+        @apply mb-0;
+      }
+    }
+
+    tr {
+      td {
+        vertical-align: top;
+      }
+    }
+  }
+
+}
+
+.cv_section table tr td:first-of-type {
+  width: 100px !important;
+}
+
+.cv_section table tr td:nth-of-type(2) {
+  width: calc(100% - 100px) !important;
+}
