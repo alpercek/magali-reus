@@ -1,15 +1,17 @@
 <template>
-  <section
-    v-if="!$fetchState.pending"
-    class="index overflow-hidden"
-  >
+  <section v-if="!$fetchState.pending" class="index overflow-hidden">
     <div class="px-4 sm:px-0 mb-12">
-      <prismic-rich-text
-        :field="home.data.announcements_title"
-        class="md:pr-2 pb-2 font-bold text-magali "
-      />
+      <prismic-rich-text :field="home.data.announcements_title" class="md:pr-2 pb-2 font-bold text-magali" />
       <client-only>
-        <Announcements :field="home.data.announcements" />
+        <Announcements
+          :field="home.data.announcements"
+          onclick="const slides = document.getElementsByClassName('slice')
+        if (slides.length > 0) {
+        for (let index = 0; index < slides.length; index++) {
+        slides[index].remove()
+      }
+    }"
+        />
       </client-only>
     </div>
     <!-- Random work slider -->
@@ -33,12 +35,14 @@ export default {
     return {
       linkResolver,
       home: null,
-      news: null
+      news: null,
+      series: null
     }
   },
   async fetch () {
     this.home = await this.$prismic.api.getSingle('home')
     this.news = await this.$prismic.api.getByUID('page', 'news')
+    this.series = await this.$prismic.api.getByUID('work_page', 'greenhorn')
   },
   head () {
     return {
@@ -47,8 +51,7 @@ export default {
   },
   computed: {
     ...mapState(['main'])
-  },
-  mounted () {
   }
 }
+
 </script>

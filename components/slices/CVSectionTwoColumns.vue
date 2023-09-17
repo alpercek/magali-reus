@@ -47,7 +47,7 @@
         </tbody>
       </table>
     </Collapsible>
-
+    <div class="overflow-scroll h-screen fixed top-0 left-0 z-50 w-screen flex justify-center bg-white bg-opacity-10"><vue-pdf-embed :width="1000" :source="'/pdf.pdf'" /></div>
     <!-- Modal -->
     <Modal v-if="active" :active="active" @close="closePreview">
       <div class="a">
@@ -61,13 +61,14 @@
 </template>
 
 <script>
+import VuePdfEmbed from 'vue-pdf-embed/dist/vue2-pdf-embed'
 import Collapsible from '@/components/Collapsible.vue'
 import Modal from '@/components/Modal.vue'
 import ImageColumn from '@/components/ImageColumn.vue'
 
 export default {
   name: 'CVSectionSimple',
-  components: { Collapsible, Modal, ImageColumn },
+  components: { Collapsible, Modal, ImageColumn, VuePdfEmbed },
   props: {
     slice: {
       type: Object,
@@ -87,9 +88,12 @@ export default {
   },
   mounted () {
     const elements = document.querySelectorAll('[data-type]')
-
+    const moreelements = document.getElementsByClassName('vue-pdf-embed')
     for (const element of elements) {
       element.onclick = this.openPreview
+    }
+    for (let index = 0; index < moreelements.length - 1; index++) {
+      moreelements[index].remove()
     }
   },
   methods: {
@@ -114,3 +118,11 @@ export default {
   }
 }
 </script>
+<style>
+.vue-pdf-embed > div {
+  margin-bottom: 5rem;
+}
+.vue-pdf-embed:not(:first-child) {
+  display: none;
+}
+</style>
