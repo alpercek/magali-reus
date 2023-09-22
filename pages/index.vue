@@ -35,14 +35,12 @@ export default {
     return {
       linkResolver,
       home: null,
-      news: null,
-      series: null
+      news: null
     }
   },
   async fetch () {
     this.home = await this.$prismic.api.getSingle('home')
     this.news = await this.$prismic.api.getByUID('page', 'news')
-    this.series = await this.$prismic.api.getByUID('work_page', 'greenhorn')
   },
   head () {
     return {
