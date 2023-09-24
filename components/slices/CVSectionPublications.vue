@@ -20,8 +20,8 @@
           v-for="(p, i) in items"
           :key="p.id + i + 'title'"
           to="/books-n-other"
-          class="hover:text-magali cursor-pointer mb-12 sm:mb-4 block"
-          @mouseenter="setPreviewing(p)"
+          class="hover:text-magali cursor-pointer mb-12 sm:mb-4 block lg:w-2/5"
+          @mouseover="setPreviewing(p)"
         >
           <div v-if="p.data.slides.length > 0" class="w-full md:hidden slider-container">
             <Slider

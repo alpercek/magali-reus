@@ -12,7 +12,7 @@
 
     <div
       v-if="main.previewing"
-      class="float-left right-column hidden md:inline-block fixed top-0 right-0 mt-24"
+      class="float-left right-column hidden lg:inline-block fixed top-0 left-1/2 mt-24 overflow-hidden h-screen"
     >
       <transition
         name="fade"

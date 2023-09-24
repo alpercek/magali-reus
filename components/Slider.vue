@@ -105,7 +105,7 @@ export default {
       const vue = this
       return {
         slidesPerView: window.innerWidth < 768 ? 1 : 'auto',
-        spaceBetween: 0,
+        spaceBetween: 20,
         autoplay: this.autoplay ? { delay: 8000 } : false,
         autoHeight: true,
         clickable: true,
@@ -186,7 +186,7 @@ export default {
 
   .swiper-container {
     height: 100%;
-
+    overflow: visible;
     figure {
       height: 100%;
 
