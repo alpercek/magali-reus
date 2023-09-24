@@ -4,7 +4,7 @@
       <prismic-rich-text
         slot="title"
         :field="slice.primary.title1"
-        class="md:pr-2 tight text-magali "
+        class="md:pr-2 tight text-magali"
       />
       <table
         slot="content"
@@ -48,12 +48,17 @@
       </table>
     </Collapsible>
     <!-- Modal -->
-    <Modal v-if="active" :active="active" @close="closePreview">
+    <Modal v-if="active" :active="active" :style="style" @close="closePreview">
       <div class="a">
+        <div style="color: #725741;" class="flex justify-center gap-14 text-4xl md:text-black md:text-base md:justify-end md:gap-4">
+          <a v-if="work.data.attachment.link_type !== 'Any'" :href="work.data.attachment.url" target="_blank">
+            
+          </a>
+          <div class="cursor-pointer select-none" @click="closePreview">
+            ✕
+          </div>
+        </div>
         <ImageColumn :images="work.data.body.filter(slice => slice.slice_type === 'image')" />
-        <a v-if="work.data.attachment.link_type !== 'Any'" class="mx-4 sm:mx-0 block underline mt-8" :href="work.data.attachment.url" target="_blank">
-           Download pdf
-        </a>
       </div>
     </Modal>
   </section>
@@ -80,8 +85,16 @@ export default {
   },
   data () {
     return {
+      dx: 100,
       work: null,
       active: false
+    }
+  },
+  computed: {
+    style () {
+      return {
+        paddingTop: `${this.dx}px`
+      }
     }
   },
   mounted () {
@@ -98,7 +111,7 @@ export default {
     async openPreview (event) {
       if (!this.work) {
         const d = JSON.parse(event.currentTarget.dataset.data)
-
+        this.dx = event.y - 10
         try {
           this.work = await this.$prismic.api.getByID(d.id)
           this.active = true

@@ -1,13 +1,10 @@
 <template>
-  <div class="fixed inset-0 bg-white bg-opacity-50 z-50 flex flex-col justify-start items-center py-20 sm:py-8 overflow-y-scroll">
-    <div class="hidden sm:block max-w-screen-sm">
+  <div style="z-index: 52;" class="fixed inset-0 bg-white bg-opacity-75 flex flex-col justify-start items-center sm:pb-8 overflow-y-scroll hide-scrollbars" @click="onClick">
+    <div class="hidden sm:block h-screen object-scale-down">
       <slot />
     </div>
-    <div class="sm:hidden w-full" @click="onClick">
+    <div class="sm:hidden" @click="onClick">
       <slot />
-    </div>
-    <div class="hidden sm:block fixed top-0 right-0 mx-8 mt-8 cursor-pointer select-none" @click="onClick">
-      ✕
     </div>
   </div>
 </template>
@@ -20,6 +17,8 @@ export default {
       type: Boolean,
       required: true
     }
+  },
+  mounted () {
   },
   methods: {
     onClick () {
