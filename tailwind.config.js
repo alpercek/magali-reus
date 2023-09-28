@@ -34,6 +34,9 @@ module.exports = {
     extend: {
       colors: {
         magali: 'var(--color-magali)'
+      },
+      animation: {
+        pulse: 'pulse 5s ease-in-out infinite',
       }
     }
     // fontSize: {

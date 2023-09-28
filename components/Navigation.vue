@@ -25,7 +25,7 @@
 
     <!-- Sub menu -->
     <transition name="fade-delay">
-      <div @mouseenter="hovering = true" @mouseleave="hovering = false" v-if="$route.name === 'series'" class="pb-32 overflow-scroll h-full hide-scrollbars grid">
+      <div @mouseenter="hovering = true" @mouseleave="hovering = false" v-if="$route.name === 'series'" class="pb-32 overflow-scroll h-full hide-scrollbars grid items-start">
         <nuxt-link
           v-for="(serie, i) in series"
           :key="serie.uid + '-series-' + i"
@@ -34,7 +34,7 @@
         >
           <prismic-rich-text :field="serie.data.title" />
         </nuxt-link>
-        <div onclick="if(getComputedStyle(this.firstElementChild).transform == 'matrix(0, 1, -1, 0, 0, 0)') {this.previousElementSibling.scrollIntoView({ behavior: 'smooth', block: 'end' }); this.parentElement.scrollBy({top: 1000, behavior: 'smooth'}); this.firstElementChild.style.transform = 'rotate(-90deg)';} else {this.parentElement.scrollTo({top: 0, behavior: 'smooth'}); this.firstElementChild.style.transform = 'rotate(90deg)';}" class="h-16 w-56 mx-4 hidden md:block fixed bottom-0 left-0 bg-white"><div v-show="hovering" class="animate-pulse" id="arrow">»</div></div>
+        <div onclick="if(getComputedStyle(this.firstElementChild).transform == 'matrix(0, 1, -1, 0, 0, 0)') {this.previousElementSibling.scrollIntoView({ behavior: 'smooth', block: 'end' }); this.parentElement.scrollBy({top: 1000, behavior: 'smooth'}); this.firstElementChild.style.transform = 'rotate(-90deg)';} else {this.parentElement.scrollTo({top: 0, behavior: 'smooth'}); this.firstElementChild.style.transform = 'rotate(90deg)';}" class="h-16 w-56 mx-4 hidden md:block fixed bottom-0 left-0 bg-white"><div v-show="hovering" class="animate-pulse cursor-pointer" id="arrow">»</div></div>
       </div>
     </transition>
 

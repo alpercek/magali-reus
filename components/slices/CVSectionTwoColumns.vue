@@ -99,12 +99,8 @@ export default {
   },
   mounted () {
     const elements = document.querySelectorAll('[data-type]')
-    const moreelements = document.getElementsByClassName('vue-pdf-embed')
     for (const element of elements) {
       element.onclick = this.openPreview
-    }
-    for (let index = 0; index < moreelements.length - 1; index++) {
-      moreelements[index].remove()
     }
   },
   methods: {
