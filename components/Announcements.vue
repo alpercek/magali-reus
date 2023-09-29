@@ -1,9 +1,9 @@
 <template>
   <div class="announcements">
-    <prismic-rich-text ref="main" :field="field" />
+    <prismic-rich-text class="px-4 sm:px-0" ref="main" :field="field" />
     <div v-if="!!work" :key="work.id" class="py-8">
       <SimpleSlider
-        :uid="work.id"
+        :uid="work"
         :slides="work.data.body"
       />
     </div>
@@ -40,6 +40,7 @@ export default {
 
     for (const element of elements) {
       element.onclick = this.openPreview
+      element.style.textDecoration = 'underline'
     }
   },
   beforeDestroy () {

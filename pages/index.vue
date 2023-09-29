@@ -1,7 +1,7 @@
 <template>
   <section v-if="!$fetchState.pending" class="index overflow-hidden">
-    <div class="px-4 sm:px-0 mb-12">
-      <prismic-rich-text :field="home.data.announcements_title" class="md:pr-2 pb-2 font-bold text-magali" />
+    <div class="mb-12">
+      <prismic-rich-text :field="home.data.announcements_title" class="md:pr-2 pb-2 px-4 sm:px-0 font-bold text-magali" />
       <client-only>
         <Announcements
           :field="home.data.announcements"

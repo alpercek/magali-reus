@@ -35,9 +35,8 @@
             />
           </swiper-slide>
         </swiper>
-      <div v-if="kedi">
         <div
-          v-if="controls"
+          v-if="controls && kedi"
           :class="`custom-controls-container show-on-hover ${controlsClass}`"
         >
           <svg xmlns="http://www.w3.org/2000/svg" width="15.751" height="28.675" viewBox="0 0 15.751 28.675" :class="`${controlsClass}-previous previous w-12 h-12`">
@@ -63,7 +62,6 @@
             />
           </svg>
         </div>
-      </div>
     </div>
   </div>
     <div v-if="workSliderVisible && kedi" ref="customNumbersSlider" class="sm:flex px-4 sm:px-0 mb-1 whitespace-nowrap overflow-x-scroll hide-scrollbars">
