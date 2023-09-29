@@ -5,6 +5,12 @@
       <client-only>
         <Announcements
           :field="home.data.announcements"
+          onclick="const slides = document.getElementsByClassName('slice')
+        if (slides.length > 0) {
+        for (let index = 0; index < slides.length; index++) {
+        slides[index].remove()
+      }
+    }"
         />
       </client-only>
     </div>

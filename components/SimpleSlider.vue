@@ -252,4 +252,12 @@ export default {
 .bullet {
   font-size: 12pt;
 }
+@screen sm {
+.slide:last-child {
+  padding-right: 24px;
+}
+}
+.slide:last-child > figure > img {
+  object-fit: cover !important;
+}
 </style>

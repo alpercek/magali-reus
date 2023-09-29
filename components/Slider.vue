@@ -1,4 +1,5 @@
 <template>
+  <div class="relative carrot">
   <div
     ref="self"
     class="slider"
@@ -25,7 +26,14 @@
           </figure>
         </swiper-slide>
       </swiper>
-      <div
+    </div>
+    <!-- Pagination -->
+    <div
+      v-if="pagination"
+      :class="`${paginationClass} text-magali text-xl`"
+    />
+  </div>
+  <div
         v-if="swiperOptions.navigation"
         :key="controlsClass"
         :class="`custom-controls-container ${controlsClass}`"
@@ -53,13 +61,7 @@
           />
         </svg>
       </div>
-    </div>
-    <!-- Pagination -->
-    <div
-      v-if="pagination"
-      :class="`${paginationClass} text-magali text-xl`"
-    />
-  </div>
+</div>
 </template>
 
 <script>
@@ -176,7 +178,6 @@ export default {
 .slideshow {
   height: 100%;
   cursor: grab;
-  position: relative;
   opacity: 0;
   transition: opacity 0.3s ease;
 
@@ -219,5 +220,11 @@ export default {
 .slider {
   @apply w-full h-full md:w-full md:h-auto relative;
   max-width: 600px;
+}
+
+@media (min-width: 640px) {
+  .carrot{
+    max-width: 50vw;
+  }
 }
 </style>
