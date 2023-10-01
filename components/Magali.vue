@@ -1,5 +1,5 @@
 <template>
-  <div class="magali" :class="{small}">
+  <a class="magali pointer-events-auto" :class="{small}" href="/">
     <svg
       id="Layer_1"
       class="h-full"
@@ -85,7 +85,7 @@
         </g>
       </g>
     </svg>
-  </div>
+  </a>
 </template>
 
 <script>

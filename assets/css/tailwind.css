@@ -122,6 +122,10 @@ button, input[type="submit"], input[type="reset"], [type="button"], [aria-label=
   max-width: 100%;
 }
 
+.font-normal.sticky {
+  pointer-events: none;
+}
+
 @layer base {
   .bust-out-mobile,
   .bust-out {

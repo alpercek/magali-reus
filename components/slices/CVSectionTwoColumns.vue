@@ -48,13 +48,18 @@
       </table>
     </Collapsible>
     <!-- Modal -->
-    <Modal v-if="active" :active="active" :style="style" @close="closePreview">
+    <Modal v-if="active"
+    :active="active"
+    :dx="this.dx"
+    @close="closePreview"
+    @scro="handleFade"
+    @scrro="had">
       <div class="a">
-        <div style="color: #725741;" class="flex justify-center gap-14 text-4xl md:text-black md:text-base md:justify-end md:gap-4">
-          <a v-if="work.data.attachment.link_type !== 'Any'" :href="work.data.attachment.url" target="_blank">
+        <div style="color: #725741;" class="fixed md:static top-3 w-full flex justify-center gap-14 text-4xl md:text-black md:text-base md:justify-end md:gap-4 zxcont">
+          <a v-if="work.data.attachment.link_type !== 'Any'" class="md:absolute" :style="style" :href="work.data.attachment.url" target="_blank">
             
           </a>
-          <div class="cursor-pointer select-none" @click="closePreview">
+          <div class="cursor-pointer select-none md:hidden" @click="closePreview">
             ✕
           </div>
         </div>
@@ -86,14 +91,17 @@ export default {
   data () {
     return {
       dx: 100,
+      dyy: 100,
       work: null,
-      active: false
+      active: false,
+      lastwork: null
     }
   },
   computed: {
     style () {
       return {
-        paddingTop: `${this.dx}px`
+        left: `${this.dyy}px`,
+        top: `${this.dx - 19}px`
       }
     }
   },
@@ -101,16 +109,25 @@ export default {
     const elements = document.querySelectorAll('[data-type]')
     for (const element of elements) {
       element.onclick = this.openPreview
+      element.style.textDecoration = 'underline'
     }
   },
   methods: {
     async openPreview (event) {
       if (!this.work) {
         const d = JSON.parse(event.currentTarget.dataset.data)
-        this.dx = event.y - 10
+        this.dx = event.target.getBoundingClientRect().bottom
+        this.dyy = event.target.getBoundingClientRect().left
+        event.currentTarget.style.zIndex = '54'
+        document.body.style.overflow = 'hidden'
+        event.currentTarget.style.position = 'absolute'
+        this.lastwork = event.currentTarget
         try {
           this.work = await this.$prismic.api.getByID(d.id)
           this.active = true
+          if (this.work.data.attachment.link_type !== 'Any' && window.innerWidth > 640) {
+            this.lastwork.style.paddingLeft = '12px'
+          }
         } catch (error) {
           console.error(error)
         }
@@ -119,8 +136,21 @@ export default {
       }
     },
     closePreview () {
+      this.lastwork.style.zIndex = '0'
+      this.lastwork.style.opacity = '1'
+      this.lastwork.style.position = 'unset'
+      this.lastwork.style.paddingLeft = '0px'
+      document.body.style.overflow = 'auto'
       this.work = false
       this.active = false
+    },
+    handleFade () {
+      this.lastwork.style.opacity = '0.1'
+      document.getElementsByClassName('zxcont')[0].style.opacity = '0'
+    },
+    had () {
+      this.lastwork.style.opacity = '1'
+      document.getElementsByClassName('zxcont')[0].style.opacity = '1'
     }
   }
 }
