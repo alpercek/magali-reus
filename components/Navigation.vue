@@ -25,7 +25,7 @@
 
     <!-- Sub menu -->
     <transition name="fade-delay">
-      <div @mouseenter="hovering = true" @mouseleave="hovering = false" v-if="$route.name === 'series'" class="pb-32 overflow-scroll h-full hide-scrollbars grid items-start">
+      <div @mouseenter="hovering = true" @mouseleave="hovering = false" v-if="$route.name === 'series'" class="pb-32 overflow-scroll h-full hide-scrollbars block items-start">
         <nuxt-link
           v-for="(serie, i) in series"
           :key="serie.uid + '-series-' + i"
