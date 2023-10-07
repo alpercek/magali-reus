@@ -25,7 +25,7 @@
 
     <!-- Sub menu -->
     <transition name="fade-delay">
-      <div @mouseenter="hovering = true" @mouseleave="hovering = false" v-if="$route.name === 'series'" class="pb-32 overflow-scroll h-full hide-scrollbars block items-start">
+      <div @mouseenter="hovering = true" @mouseleave="hovering = false" v-if="$route.name === 'series'" class="pb-32 overflow-scroll h-full hide-scrollbars block">
         <nuxt-link
           v-for="(serie, i) in series"
           :key="serie.uid + '-series-' + i"
@@ -34,13 +34,13 @@
         >
           <prismic-rich-text :field="serie.data.title" />
         </nuxt-link>
-        <div onclick="if(getComputedStyle(this.firstElementChild).transform == 'matrix(0, 1, -1, 0, 0, 0)') {this.previousElementSibling.scrollIntoView({ behavior: 'smooth', block: 'end' }); this.parentElement.scrollBy({top: 1000, behavior: 'smooth'}); this.firstElementChild.style.transform = 'rotate(-90deg)';} else {this.parentElement.scrollTo({top: 0, behavior: 'smooth'}); this.firstElementChild.style.transform = 'rotate(90deg)';}" class="h-16 w-56 mx-4 hidden md:block fixed bottom-0 left-0 bg-white"><div v-show="hovering" class="animate-pulse cursor-pointer" id="arrow">»</div></div>
+        <div key="etf" onclick="if(getComputedStyle(this.firstElementChild).transform == 'matrix(0, 1, -1, 0, 0, 0)') {this.previousElementSibling.scrollIntoView({ behavior: 'smooth', block: 'end' }); this.parentElement.scrollBy({top: 1000, behavior: 'smooth'}); this.firstElementChild.style.transform = 'rotate(-90deg)';} else {this.parentElement.scrollTo({top: 0, behavior: 'smooth'}); this.firstElementChild.style.transform = 'rotate(90deg)';}" class="h-16 w-56 mx-4 hidden md:block fixed bottom-0 left-0 bg-white"><div v-show="hovering" class="animate-pulse cursor-pointer arroww asdf">»</div></div>
       </div>
     </transition>
 
     <!-- Sub menu -->
     <transition name="fade" mode="out-in">
-      <div :key="main.sub.length">
+      <div v-if="main.sub.length > 1" @mouseenter="xhex($event)" @mouseleave="hoveringg = false" :key="main.sub.length" class="pb-32 overflow-scroll h-full hide-scrollbars block">
         <nuxt-link
           v-for="(item, i) in main.sub"
           :key="item.id + '-' + i"
@@ -50,6 +50,7 @@
         >
           {{ item.title }}
         </nuxt-link>
+        <div onclick="if(getComputedStyle(this.firstElementChild).transform == 'matrix(0, 1, -1, 0, 0, 0)') {this.previousElementSibling.scrollIntoView({ behavior: 'smooth', block: 'end' }); this.parentElement.scrollBy({top: 1000, behavior: 'smooth'}); this.firstElementChild.style.transform = 'rotate(-90deg)';} else {this.parentElement.scrollTo({top: 0, behavior: 'smooth'}); this.firstElementChild.style.transform = 'rotate(90deg)';}" class="h-16 w-56 mx-4 hidden md:block fixed bottom-0 left-0 bg-white"><div v-show="hoveringg" class="animate-pulse cursor-pointer testss arroww" id="arrow">»</div></div>
       </div>
     </transition>
   </nav>
@@ -74,11 +75,17 @@ export default {
   data () {
     return {
       linkResolver,
-      hovering: false
+      hovering: false,
+      hoveringg: false
     }
   },
   computed: {
     ...mapState(['main'])
+  },
+  methods: {
+    xhex (event) {
+      if (event.target.scrollHeight > event.target.clientHeight) { this.hoveringg = true }
+    }
   }
 }
 </script>
@@ -102,13 +109,13 @@ nav {
     font-size: 16px;
   }
 }
-#arrow {
+.arroww {
   transform: rotate(90deg);
   width: min-content;
   color: #C4C4C4;
 }
 @media (min-height: 59rem) {
-  #arrow {
+  .arroww {
   display: none;
   }
 }
