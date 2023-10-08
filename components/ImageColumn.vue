@@ -1,6 +1,6 @@
 <template>
   <div class="max-h-screen object-scale-down">
-    <div v-for="image, index in images" :key="image.primary.image1.url" :class="{ 'mb-8': index < images.length - 1 }">
+    <div v-for="image, index in images" :key="image.primary.image1.url" :class=" index < images.length - 1 ? 'mb-8' : 'pb-12' ">
       <img
         class="max-h-screen m-auto"
         :src="image.primary.image1.url"
