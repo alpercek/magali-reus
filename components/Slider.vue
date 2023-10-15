@@ -17,6 +17,9 @@
           v-for="(image, index) in slides"
           :key="index"
           class="slide"
+          :style="{
+              width: width(image)
+            }"
         >
           <figure v-if="image.slide" class="slideInner">
             <img class="w-full object-contain object-top" :src="image.slide.url" :alt="image.slide.alt">
@@ -108,7 +111,7 @@ export default {
       return {
         slidesPerView: window.innerWidth < 768 ? 1 : 'auto',
         spaceBetween: 20,
-        autoplay: this.autoplay ? { delay: 8000 } : false,
+        autoplay: this.autoplay ? { delay: 4000 } : false,
         autoHeight: true,
         clickable: true,
         numbers,
@@ -164,10 +167,10 @@ export default {
         return 'auto'
       } else if (window.innerWidth < 1280) {
         h = 500
-        return `${h * image.dimensions.width / image.dimensions.height}px`
+        return `${h * image.slide.dimensions.width / image.slide.dimensions.height}px`
       } else {
         h = 700
-        return `${h * image.dimensions.width / image.dimensions.height}px`
+        return `${h * image.slide.dimensions.width / image.slide.dimensions.height}px`
       }
     }
   }
@@ -219,7 +222,6 @@ export default {
 
 .slider {
   @apply w-full h-full md:w-full md:h-auto relative;
-  max-width: 600px;
 }
 
 @media (min-width: 640px) {
