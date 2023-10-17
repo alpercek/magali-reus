@@ -21,7 +21,8 @@
           :key="p.id + i + 'title'"
           to="/books-n-other"
           class="hover:text-magali cursor-pointer mb-12 sm:mb-4 block lg:w-2/5"
-          @mouseover="setPreviewing(p)"
+          @mouseenter="enes(p)"
+          @mouseleave="sene()"
         >
           <div v-if="p.data.slides.length > 0" class="w-full md:hidden slider-container">
             <Slider
@@ -57,7 +58,8 @@ export default {
   },
   data () {
     return {
-      items: []
+      items: [],
+      timeoutId: null
     }
   },
   async fetch () {
@@ -69,7 +71,15 @@ export default {
     ...mapState(['main'])
   },
   methods: {
-    ...mapActions({ setPreviewing: 'main/SET_PREVIEWING' })
+    ...mapActions({ setPreviewing: 'main/SET_PREVIEWING' }),
+    enes (p) {
+      this.timeoutId = window.setTimeout(() => {
+        this.setPreviewing(p)
+      }, 500)
+    },
+    sene () {
+      window.clearTimeout(this.timeoutId)
+    }
   }
 }
 </script>
