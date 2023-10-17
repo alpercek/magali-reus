@@ -169,7 +169,7 @@ export default {
         h = 500
         return `${h * image.slide.dimensions.width / image.slide.dimensions.height}px`
       } else {
-        h = 700
+        h = 600
         return `${h * image.slide.dimensions.width / image.slide.dimensions.height}px`
       }
     }
