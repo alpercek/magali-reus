@@ -79,14 +79,18 @@ export default {
   },
   async mounted () {
     this.page = await this.$prismic.api.getByUID('page', this.$route.params.uid)
+    const keykey = window.location.href.split('?')[1]
+    setTimeout(() => {
+      document.getElementsByClassName(keykey)[1].scrollIntoView({ behavior: 'smooth', block: 'center', inline: 'nearest' })
+    }, 200)
+    setTimeout(() => {
+      document.getElementsByClassName(keykey)[1].click()
+    }, 1000)
   },
   methods: mapActions({
     setSub: 'main/SET_SUB',
     setPreviewing: 'main/SET_PREVIEWING'
   })
-  // mounted () {
-  // window.addEventListener('resize', function () { location.reload() })
-  // }
 }
 </script>
 
