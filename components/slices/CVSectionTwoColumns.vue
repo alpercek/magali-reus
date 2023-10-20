@@ -48,6 +48,7 @@
       </table>
     </Collapsible>
     <!-- Modal -->
+    <transition name="fade">
     <Modal v-if="active"
     :active="active"
     :dx="this.dx"
@@ -76,6 +77,7 @@
         <ImageColumn :images="work.data.body.filter(slice => slice.slice_type === 'image')" />
       </div>
     </Modal>
+  </transition>
   </section>
 </template>
 
