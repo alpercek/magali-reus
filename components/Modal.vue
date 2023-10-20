@@ -39,10 +39,10 @@ export default {
       this.$emit('close')
     },
     onScroll (event) {
-      if (event.target.scrollTop === 0) {
-        this.$emit('scrro')
+      if (event.target.scrollTop >= this.dx - 30) {
+        this.$emit('freeze')
       } else {
-        this.$emit('scro')
+        this.$emit('melt')
       }
     }
   }
