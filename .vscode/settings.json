@@ -3,7 +3,7 @@
   "workbench.preferredDarkColorTheme": "Solarized Dark",
   "workbench.colorTheme": "dark-plus-syntax",
   "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": true
+    "source.fixAll.eslint": "explicit"
   },
   "eslint.validate": ["javascript"]
 }

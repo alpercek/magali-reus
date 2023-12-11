@@ -14,7 +14,6 @@
           <tr
             v-for="row, j in slice.items"
             :key="j"
-            class="leading-4"
           >
             <td class="hidden" :class="{ small: $prismic.asText(row.column_1).length <= 5 }">
               <a
@@ -31,7 +30,7 @@
               />
             </td>
             <td>
-               <div class="flex"> <a style="color: #B9A5CC;" class="cursor-pointer pr-2.5" @click="downloadPreview($event)"></a>
+               <div class="flex"> <a class="cursor-pointer pr-2.5 text-magali hidden md:block" @click="downloadPreview($event)"></a>
               <a
                 v-if="row.file"
                 target="_blank"
@@ -59,11 +58,11 @@
     @melt="absolutetitle"
     >
       <div class="a">
-        <div class="cursor-pointer select-none text-5xl absolute left-1/2 hidden md:block" style="color: #B9A5CC; transform: translate(0px,-92px);" @click="closePreview">
+        <div class="cursor-pointer select-none text-5xl absolute left-1/2 hidden md:block text-magali" style="transform: translate(0px,-92px);" @click="closePreview">
             ✕
           </div>
         <div :style="style" style="position: absolute; transform: translate(0, -21px);" class="hidden md:flex text-base zxcont">
-          <a v-if="work.data.attachment.link_type !== 'Any'" style="color: #B9A5CC;" class="pr-2.5" :href="work.data.attachment.url" target="_blank">
+          <a v-if="work.data.attachment.link_type !== 'Any'" class="pr-2.5 text-magali" :href="work.data.attachment.url" target="_blank">
             
           </a>
           <div class="title hidden md:block no-underline">{{ this.lastwork.innerText }}</div>
