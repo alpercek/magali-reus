@@ -25,6 +25,7 @@ import CVSectionTwoColumns from '@/components/slices/CVSectionTwoColumns'
 import CVSectionTwoColumnsImage from '@/components/slices/CVSectionTwoColumnsImage'
 import SliderSlice from '@/components/slices/SliderSlice'
 import Exhibitions from '@/components/slices/Exhibitions'
+import SelectExhibition from '@/components/slices/SelectExhibition'
 
 export default {
   name: 'TextualSlices',
@@ -35,7 +36,8 @@ export default {
     CVSectionTwoColumns,
     CVSectionTwoColumnsImage,
     SliderSlice,
-    Exhibitions
+    Exhibitions,
+    SelectExhibition
   },
   props: {
     body: {
@@ -60,7 +62,8 @@ export default {
         cv_section__two_columns_image: CVSectionTwoColumnsImage,
         paragraph: TextSlice,
         texts_with_file: TextsWithFileSlice,
-        slider: SliderSlice
+        slider: SliderSlice,
+        select_exhibition: SelectExhibition
       }
     }
   },

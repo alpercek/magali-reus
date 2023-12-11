@@ -74,6 +74,18 @@
             </div>
           </transition>
           <li
+          @click="toggleMenu"
+            class="text-center text-magali transition-colors hover:text-black mb-4"
+            :class="{ 'text-black': $route.path === '/exhibitions' }"
+          >
+            <nuxt-link
+              class="text-3xl leading-tight uppercase inline-block"
+              to="/exhibitions"
+            >
+              Exhibitions
+            </nuxt-link>
+          </li>
+          <li
             v-for="page in pages"
             :key="page.uid"
             class="text-center text-magali transition-colors hover:text-black mb-4"

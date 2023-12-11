@@ -2,8 +2,8 @@
   <nav
     class=" h-screen m-0 pt-48 pb-12 bg-transparent"
     :class="{ collapsed: main.collapsed }"
-  >
-    <div>
+  ><div class="mb-4 grid">
+    <div class="order-first">
       <nuxt-link
         class="page-link uppercase block"
         to="/series"
@@ -12,17 +12,24 @@
       </nuxt-link>
     </div>
 
-    <div class="mb-4">
+    <div style="order: -3;">
       <nuxt-link
+        class="page-link uppercase block"
+        to="/exhibitions"
+      >
+        Exhibitions
+      </nuxt-link>
+    </div>
+          <nuxt-link
         v-for="(page, i) in pages"
         :key="page.uid + '-page-' + i"
         class="page-link uppercase block"
+        :style="{'order':-i*2}"
         :to="linkResolver(page)"
       >
         <prismic-rich-text :field="page.data.title" />
       </nuxt-link>
     </div>
-
     <!-- Sub menu -->
     <transition name="fade-delay">
       <div @mouseenter="hovering = true" @mouseleave="hovering = false" v-if="$route.name === 'series'" class="pb-32 overflow-scroll h-full hide-scrollbars block">

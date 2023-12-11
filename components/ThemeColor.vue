@@ -35,6 +35,9 @@ export default {
         case ('series-uid'):
           document = await this.$prismic.api.getByUID('work_page', this.$route.params.uid)
           break
+        case ('exhibitions'):
+          document = await this.$prismic.api.getSingle('exhibitions_index')
+          break
         default:
           break
       }
