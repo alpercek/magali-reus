@@ -138,7 +138,11 @@ export default {
           this.active = true
           if (this.dx / window.innerHeight * 100 > 75) {
             setTimeout(() => {
-              document.querySelector('#selected-exhibitions > div:nth-child(3) > div.fixed.inset-0.flex.flex-col.justify-start.items-center.sm\\:pb-8.overflow-y-scroll.hide-scrollbars > div.hidden.sm\\:block.h-screen.object-scale-down > div > div.hidden.md\\:flex.text-base.zxcont').scrollIntoView({ behavior: 'smooth', block: 'center', inline: 'nearest' })
+              if (window.innerWidth > 767) {
+                document.querySelector('#selected-exhibitions > div:nth-child(3) > div.fixed.inset-0.flex.flex-col.justify-start.items-center.sm\\:pb-8.overflow-y-scroll.hide-scrollbars > div.hidden.sm\\:block.h-screen.object-scale-down > div > div.hidden.md\\:flex.text-base.zxcont').scrollIntoView({ behavior: 'smooth', block: 'center', inline: 'nearest' })
+              } else {
+                document.querySelector('#selected-exhibitions > div:nth-child(3) > div.fixed.inset-0.flex.flex-col.justify-start.items-center.sm\\:pb-8.overflow-y-scroll.hide-scrollbars > div.hidden.sm\\:block.h-screen.object-scale-down > div > div.max-h-screen.object-scale-down.pt-1 > div:nth-child(1)').scrollIntoView({ behavior: 'smooth', block: 'center', inline: 'nearest' })
+              }
             }, 300)
           }
         } catch (error) {
