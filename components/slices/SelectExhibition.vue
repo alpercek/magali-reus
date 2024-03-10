@@ -130,16 +130,17 @@ export default {
       if (!this.work) {
         const d = JSON.parse(event.currentTarget.dataset.data)
         this.dx = event.target.getBoundingClientRect().bottom
-        console.log(this.dx / window.innerHeight * 100)
-        if (this.dx / window.innerHeight * 100 > 75) {
-          this.dx = 100
-        }
         this.dyy = event.target.getBoundingClientRect().left - 20
         document.body.style.overflow = 'hidden'
         this.lastwork = event.currentTarget.parentElement
         try {
           this.work = await this.$prismic.api.getByID(d.id)
           this.active = true
+          if (this.dx / window.innerHeight * 100 > 75) {
+            setTimeout(() => {
+              document.querySelector('#selected-exhibitions > div:nth-child(3) > div.fixed.inset-0.flex.flex-col.justify-start.items-center.sm\\:pb-8.overflow-y-scroll.hide-scrollbars > div.hidden.sm\\:block.h-screen.object-scale-down > div > div.hidden.md\\:flex.text-base.zxcont').scrollIntoView({ behavior: 'smooth', block: 'center', inline: 'nearest' })
+            }, 300)
+          }
         } catch (error) {
           console.error(error)
         }
