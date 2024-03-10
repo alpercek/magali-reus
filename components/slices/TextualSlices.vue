@@ -24,6 +24,7 @@ import CVSectionSimple from '@/components/slices/CVSectionSimple'
 import CVSectionTwoColumns from '@/components/slices/CVSectionTwoColumns'
 import CVSectionTwoColumnsImage from '@/components/slices/CVSectionTwoColumnsImage'
 import SliderSlice from '@/components/slices/SliderSlice'
+import ExhibitionSlider from '@/components/slices/ExhibitionSlider'
 import Exhibitions from '@/components/slices/Exhibitions'
 import SelectExhibition from '@/components/slices/SelectExhibition'
 
@@ -36,6 +37,7 @@ export default {
     CVSectionTwoColumns,
     CVSectionTwoColumnsImage,
     SliderSlice,
+    ExhibitionSlider,
     Exhibitions,
     SelectExhibition
   },
@@ -63,7 +65,8 @@ export default {
         paragraph: TextSlice,
         texts_with_file: TextsWithFileSlice,
         slider: SliderSlice,
-        select_exhibition: SelectExhibition
+        select_exhibition: SelectExhibition,
+        exhibition_slider: ExhibitionSlider
       }
     }
   },
