@@ -75,6 +75,9 @@
           <div class="cursor-pointer select-none" @click="closePreview">
             ✕
           </div>
+          <div class="cursor-pointer select-none" @click="copyShare">
+            SHARE
+          </div>
         </div>
         <ImageColumn :images="work.data.body.filter(slice => slice.slice_type === 'image')" class="pt-1" />
       </div>
@@ -135,15 +138,14 @@ export default {
         this.lastwork = event.currentTarget.parentElement
         try {
           this.work = await this.$prismic.api.getByID(d.id)
-          this.active = true
           if (this.dx / window.innerHeight * 100 > 75) {
+            event.target.scrollIntoView({ behavior: 'smooth', block: 'center', inline: 'nearest' })
+            this.dx = window.innerHeight / 2 + 10
             setTimeout(() => {
-              if (window.innerWidth > 767) {
-                document.querySelector('#selected-exhibitions > div:nth-child(3) > div.fixed.inset-0.flex.flex-col.justify-start.items-center.sm\\:pb-8.overflow-y-scroll.hide-scrollbars > div.hidden.sm\\:block.h-screen.object-scale-down > div > div.hidden.md\\:flex.text-base.zxcont').scrollIntoView({ behavior: 'smooth', block: 'center', inline: 'nearest' })
-              } else {
-                document.querySelector('#selected-exhibitions > div:nth-child(3) > div.fixed.inset-0.flex.flex-col.justify-start.items-center.sm\\:pb-8.overflow-y-scroll.hide-scrollbars > div.hidden.sm\\:block.h-screen.object-scale-down > div > div.max-h-screen.object-scale-down.pt-1 > div:nth-child(1)').scrollIntoView({ behavior: 'smooth', block: 'center', inline: 'nearest' })
-              }
+              this.active = true
             }, 300)
+          } else {
+            this.active = true
           }
         } catch (error) {
           console.error(error)
@@ -170,6 +172,16 @@ export default {
       document.body.style.overflow = 'auto'
       this.work = false
       this.active = false
+    },
+    copyShare () {
+      navigator.clipboard
+        .writeText(window.location.href + '?' + this.lastwork.firstElementChild.innerText.replaceAll(' ', ''))
+        .then(() => {
+          alert('successfully copied')
+        })
+        .catch(() => {
+          alert('something went wrong')
+        })
     },
     fixtitle () {
       document.getElementsByClassName('zxcont')[0].style.top = '24px'

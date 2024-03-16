@@ -13,7 +13,7 @@ export default function (type, element, content, children) {
     console.log(JSON.stringify(element.data))
 
     if (element.data.link_type === 'Document') {
-      result = `<span class="cursor-pointer" data-type="document" data-data="${JSON.stringify(element.data).replace(/"/g, '&quot;').replace(/ /g, '')}">${content}</span>`
+      result = `<span class="cursor-pointer ${content.replaceAll(' ', '')}" data-type="document" data-data="${JSON.stringify(element.data).replace(/"/g, '&quot;').replace(/ /g, '')}">${content}</span>`
     } else {
       const target = element.data.target ? `target="'${element.data.target}'" rel="noopener"` : ''
       result = `<a href="${url}" ${target}>${content}</a>`

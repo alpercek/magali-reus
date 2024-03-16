@@ -1,10 +1,10 @@
 <template>
   <div>
-  <div style="z-index: 56;" :style="style" class="fixed inset-0 flex flex-col justify-start items-center sm:pb-8 overflow-y-scroll hide-scrollbars" @click="onClick" @scroll="onScroll($event)">
+  <div style="z-index: 56;" :style="style" class="fixed inset-0 flex flex-col justify-start items-center sm:pb-8 overflow-y-scroll hide-scrollbars" @click="onClick($event)" @scroll="onScroll($event)">
     <div class="hidden sm:block h-screen object-scale-down">
       <slot />
     </div>
-    <div class="sm:hidden" @click="onClick">
+    <div class="sm:hidden" @click="onClick($event)">
       <slot />
     </div>
   </div>
@@ -35,8 +35,10 @@ export default {
   mounted () {
   },
   methods: {
-    onClick () {
-      this.$emit('close')
+    onClick (event) {
+      if (event.y > 100) {
+        this.$emit('close')
+      }
     },
     onScroll (event) {
       if (event.target.scrollTop >= this.dx - 30) {
