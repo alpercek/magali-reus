@@ -68,18 +68,19 @@
           </a>
           <div class="title hidden md:block no-underline">{{ this.lastwork.innerText }}</div>
         </div>
-        <div style="color: #725741;" class="fixed top-3 w-full flex justify-center gap-14 text-4xl md:text-5xl md:text-magali left-0">
+        <div class="fixed top-3 w-full flex justify-center gap-14 text-4xl md:text-5xl text-magali left-0">
           <a v-if="work.data.attachment.link_type !== 'Any'" :style="style" :href="work.data.attachment.url" target="_blank">
             
           </a>
           <div class="cursor-pointer select-none" @click="closePreview">
             ✕
           </div>
-          <div class="cursor-pointer select-none fill-magali" @click="copyShare">
+          <div class="cursor-pointer select-none fill-magali w-9" @click="copyShare">
             <svg xmlns="http://www.w3.org/2000/svg"
-            height="48"
+            class="md:h-12 sharebutton"
+            height="10"
             viewBox="0 0 24 24"
-            width="48"
+            width="10"
             focusable="false"
             style="pointer-events: none;"><path d="M15 5.63 20.66 12 15 18.37V14h-1c-3.96 0-7.14 1-9.75 3.09 1.84-4.07 5.11-6.4 9.89-7.1l.86-.13V5.63M14 3v6C6.22 10.13 3.11 15.33 2 21c2.78-3.97 6.44-6 12-6v6l8-9-8-9z"></path></svg>
           </div>
@@ -232,5 +233,17 @@ export default {
     transition-duration: 150ms;
     font-family: ABC Arizona Mix;
     cursor: pointer !important;
+}
+@media (max-width: 765px) {
+  .sharebutton{
+    scale: 5;
+    transform: translate(2px, 2.5px) scaleY(0.8);
+  }
+}
+@media (min-width: 765px) {
+  .sharebutton{
+    scale: 6.5;
+    transform: translate(2px, 0px) scaleY(0.8);
+  }
 }
 </style>
