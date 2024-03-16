@@ -181,7 +181,7 @@ export default {
     },
     copyShare () {
       navigator.clipboard
-        .writeText(window.location.href + '?' + this.lastwork.firstElementChild.innerText.replaceAll(' ', ''))
+        .writeText(window.location.href.split('?')[0] + '?' + this.lastwork.firstElementChild.innerText.replaceAll(' ', ''))
         .then(() => {
           alert('successfully copied')
         })
