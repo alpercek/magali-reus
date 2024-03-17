@@ -30,7 +30,7 @@
               />
             </td>
             <td>
-               <div class="flex"> <a v-if="row.column_1[0].spans.length > 1" class="cursor-pointer pr-2.5 text-magali hidden md:block" @click="downloadPreview($event)"></a>
+               <div class="flex pb-4"> <a v-if="row.column_1[0].spans.length > 1" class="cursor-pointer pr-2.5 text-magali hidden md:block" @click="downloadPreview($event)"></a>
                 <a v-else class="pointer-events-none pr-2.5 text-magali hidden md:block opacity-0" ></a>
               <a
                 v-if="row.file"
@@ -78,9 +78,9 @@
           <div class="cursor-pointer select-none fill-magali w-9" @click="copyShare">
             <svg xmlns="http://www.w3.org/2000/svg"
             class="md:h-12 sharebutton"
-            height="10"
+            height="9"
             viewBox="0 0 24 24"
-            width="10"
+            width="9"
             focusable="false"
             style="pointer-events: none;"><path d="M15 5.63 20.66 12 15 18.37V14h-1c-3.96 0-7.14 1-9.75 3.09 1.84-4.07 5.11-6.4 9.89-7.1l.86-.13V5.63M14 3v6C6.22 10.13 3.11 15.33 2 21c2.78-3.97 6.44-6 12-6v6l8-9-8-9z"></path></svg>
           </div>
@@ -112,7 +112,7 @@ export default {
   },
   data () {
     return {
-      dx: 100,
+      dx: 70,
       dyy: 100,
       work: null,
       active: false,
@@ -138,7 +138,9 @@ export default {
     async openPreview (event) {
       if (!this.work) {
         const d = JSON.parse(event.currentTarget.dataset.data)
-        this.dx = event.target.getBoundingClientRect().bottom
+        if (window.innerWidth > 765) {
+          this.dx = event.target.getBoundingClientRect().bottom
+        }
         this.dyy = event.target.getBoundingClientRect().left - 20
         document.body.style.overflow = 'hidden'
         this.lastwork = event.currentTarget.parentElement
