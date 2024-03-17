@@ -104,7 +104,6 @@ export default {
       return `custom-pagination-${this.cleanUid}`
     },
     swiperOptions () {
-      const vue = this
       return {
         slidesPerView: 'auto',
         spaceBetween: 16,
@@ -116,17 +115,6 @@ export default {
         navigation: {
           prevEl: `.${this.controlsClass}-previous`,
           nextEl: `.${this.controlsClass}-next`
-        },
-        on: {
-          slideChangeTransitionEnd () {
-            vue.activeIndex = this.activeIndex
-
-            const el = vue.$refs.customNumbersSlider.querySelector(`#cn-${this.activeIndex + 1}`)
-
-            if (el) {
-              vue.$refs.customNumbersSlider.scrollTo({ left: el.offsetLeft - window.innerWidth / 2 - 10, behavior: 'smooth' })
-            }
-          }
         },
         pagination: {
           el: `.${this.className}`,

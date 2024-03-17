@@ -46,9 +46,11 @@ export default {
   computed: mapState(['main']),
   mounted () {
     const keykey = window.location.href.split('?')[1]
-    setTimeout(() => {
-      document.getElementsByClassName(keykey)[1].click()
-    }, 1000)
+    if (keykey !== undefined) {
+      setTimeout(() => {
+        document.getElementsByClassName(keykey)[1].click()
+      }, 1000)
+    }
   }
 }
 </script>

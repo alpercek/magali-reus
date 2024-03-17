@@ -185,7 +185,7 @@ export default {
       navigator.clipboard
         .writeText(window.location.href.split('?')[0] + '?' + this.lastwork.firstElementChild.innerText.replaceAll(' ', ''))
         .then(() => {
-          alert('successfully copied')
+          alert('link copied')
         })
         .catch(() => {
           alert('something went wrong')
