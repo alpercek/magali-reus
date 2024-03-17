@@ -36,7 +36,7 @@ export default {
       }
     })
     this.slices = slices
-    this.setSub(slices)
+    // this.setSub(slices)
   },
   head () {
     return {

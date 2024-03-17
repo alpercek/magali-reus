@@ -30,7 +30,7 @@
               />
             </td>
             <td>
-               <div class="flex pb-4"> <a v-if="row.column_1[0].spans.length > 1" class="cursor-pointer pr-2.5 text-magali hidden md:block" @click="downloadPreview($event)"></a>
+               <div class="flex pb-4"> <a v-if="row.download_arrow" class="cursor-pointer pr-2.5 text-magali hidden md:block" @click="downloadPreview($event)"></a>
                 <a v-else class="pointer-events-none pr-2.5 text-magali hidden md:block opacity-0" ></a>
               <a
                 v-if="row.file"
@@ -132,6 +132,7 @@ export default {
     for (const element of elements) {
       element.onclick = this.openPreview
       element.style.textDecoration = 'underline'
+      element.style.fontStyle = 'italic'
     }
   },
   methods: {
@@ -163,17 +164,15 @@ export default {
       }
     },
     async downloadPreview (event) {
-      if (!this.work) {
-        const d = JSON.parse(event.currentTarget.nextElementSibling.firstElementChild.firstElementChild.dataset.data)
-        try {
-          this.work = await this.$prismic.api.getByID(d.id)
-          window.open(
-            this.work.data.attachment.url,
-            '_blank' // <- This is what makes it open in a new window.
-          )
-        } catch (error) {
-          console.error(error)
-        }
+      const d = JSON.parse(event.currentTarget.nextElementSibling.firstElementChild.firstElementChild.dataset.data)
+      try {
+        this.work = await this.$prismic.api.getByID(d.id)
+        window.open(
+          this.work.data.attachment.url,
+          '_blank' // <- This is what makes it open in a new window.
+        )
+      } catch (error) {
+        console.error(error)
       }
     },
     closePreview () {
