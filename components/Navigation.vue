@@ -47,7 +47,7 @@
 
     <!-- Sub menu -->
     <transition name="fade" mode="out-in">
-      <div v-if="main.sub.length > 1" @mouseenter="xhex($event)" @mouseleave="hoveringg = false" :key="main.sub.length" class="pb-32 overflow-scroll h-full hide-scrollbars block">
+      <div v-if="main.sub.length > 1" @mouseenter="xhex($event)" @mouseleave="hoveringg = false" :key="main.sub.length" class="pb-40 overflow-scroll h-full hide-scrollbars block">
         <nuxt-link
           v-for="(item, i) in main.sub"
           :key="item.id + '-' + i"
@@ -121,7 +121,7 @@ nav {
   width: min-content;
   color: #C4C4C4;
 }
-@media (min-height: 59rem) {
+@media (min-height: 80rem) {
   .arroww {
   display: none;
   }
