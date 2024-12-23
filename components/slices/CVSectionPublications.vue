@@ -63,7 +63,7 @@ export default {
     }
   },
   async fetch () {
-    const publications = await this.$prismic.api.getByIDs(this.slice.items.map(i => i.publication.id))
+    const publications = await this.$prismic.api.getByIDs(this.slice.items.map(i => i.publication.id), { pageSize: 100 })
     const items = this.slice.items.map(i => publications.results.find(p => p.id === i.publication.id))
     this.items = items
   },
