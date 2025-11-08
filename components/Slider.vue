@@ -24,7 +24,7 @@
             }"
         >
           <figure v-if="image.slide" class="slideInner overflow-hidden">
-            <img class="w-full object-contain object-top" :src="image.slide.url" :alt="image.slide.alt">
+            <img class="w-full object-contain object-top" :src="uncompressed(image.slide.url)" :alt="image.slide.alt">
             <figcaption class="text-magali inline-block">
               {{ image.slide.alt }}
             </figcaption>
@@ -156,28 +156,37 @@ export default {
     this.$refs.swiper.swiper.update()
   },
   methods: {
+    uncompressed (url) {
+      if (url) {
+        url = url.replace(/\?.*$/, '')
+        return url
+      }
+    },
     bulletClick (e) {
       this.$refs.swiper.swiper.slideTo(e.target.dataset.index)
     },
     height (image) {
-      const ratio = image.slide.dimensions.width / window.innerWidth
-      if (window.innerWidth < 768) {
-        return `${image.slide.dimensions.height / ratio}px`
-      } else {
-        return 'auto'
+      if (image.slide.dimensions) {
+        const ratio = image.slide.dimensions.width / window.innerWidth
+        if (window.innerWidth < 768) {
+          return `${image.slide.dimensions.height / ratio}px`
+        } else {
+          return 'auto'
+        }
       }
     },
     width (image) {
       let h
-
-      if (window.innerWidth < 768) {
-        return 'auto'
-      } else if (window.innerWidth < 1280) {
-        h = 500
-        return `${h * image.slide.dimensions.width / image.slide.dimensions.height}px`
-      } else {
-        h = 600
-        return `${h * image.slide.dimensions.width / image.slide.dimensions.height}px`
+      if (image.slide.dimensions) {
+        if (window.innerWidth < 768) {
+          return 'auto'
+        } else if (window.innerWidth < 1280) {
+          h = 500
+          return `${h * image.slide.dimensions.width / image.slide.dimensions.height}px`
+        } else {
+          h = 600
+          return `${h * image.slide.dimensions.width / image.slide.dimensions.height}px`
+        }
       }
     }
   }
