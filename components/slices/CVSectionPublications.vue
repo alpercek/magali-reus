@@ -8,7 +8,7 @@
     >
       <prismic-rich-text
         slot="title"
-        class="md:pr-2 pb-4 sm:pb-0 text-magali "
+        class="md:pr-2 pb-4 mb:pb-[29px] text-magali "
         :field="slice.primary.title1"
       />
       <div
@@ -20,17 +20,18 @@
           v-for="(p, i) in items"
           :key="p.id + i + 'title'"
           to="/books-n-other"
-          class="hover:text-magali cursor-pointer mb-12 sm:mb-4 block lg:w-2/5"
-          @mouseenter="enes(p)"
-          @mouseleave="sene()"
+          class="hover:text-magali cursor-pointer mb-12 mb:mb-[40px] block"
+          @mouseenter="parentStartAutoplay(i, true)"
+          @mouseleave="parentStartAutoplay(i, false)"
         >
-          <div v-if="p.data.slides.length > 0" class="w-full md:hidden slider-container">
-            <Slider
+          <div v-if="p.data.slides.length > 0" class="w-full slider-container">
+            <SliderBook
+              ref="childRef"
               :slides="p.data.slides"
               :uid="p.id"
             />
           </div>
-          <prismic-rich-text :field="p.data.title" class="tight italic" />
+          <prismic-rich-text :field="p.data.title" class="tight italic md:mt-2" />
           <prismic-rich-text :field="p.data.description" class="tight" />
         </div>
       </div>
@@ -40,11 +41,11 @@
 
 <script>
 import { mapState, mapActions } from 'vuex'
-import Slider from '@/components/Slider.vue'
+import SliderBook from '@/components/SliderBook.vue'
 
 export default {
   name: 'CVSectionSimple',
-  components: { Slider },
+  components: { SliderBook },
   props: {
     slice: {
       type: Object,
@@ -59,7 +60,8 @@ export default {
   data () {
     return {
       items: [],
-      timeoutId: null
+      timeoutId: null,
+      autoplay: false
     }
   },
   async fetch () {
@@ -71,6 +73,9 @@ export default {
     ...mapState(['main'])
   },
   methods: {
+    parentStartAutoplay (i, state) {
+      this.$refs.childRef[i].startAutoplay(state)
+    },
     ...mapActions({ setPreviewing: 'main/SET_PREVIEWING' }),
     enes (p) {
       this.timeoutId = window.setTimeout(() => {

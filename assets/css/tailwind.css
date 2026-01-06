@@ -177,3 +177,6 @@ button, input[type="submit"], input[type="reset"], [type="button"], [aria-label=
   scrollbar-width: none;  /* Firefox */
 }
 }
+.cv_section:not(:first-child) {
+  padding-top: 10px;
+}
