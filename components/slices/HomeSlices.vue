@@ -22,13 +22,15 @@
 import HomeWorkSlider from '@/components/slices/HomeWorkSlider.vue'
 import WorkSlider from '@/components/slices/WorkSlider.vue'
 import ImageSlice from '@/components/slices/ImageSlice.vue'
+import HomeVideo from '@/components/slices/HomeVideo.vue'
 
 export default {
   name: 'Slices',
   components: {
     HomeWorkSlider,
     WorkSlider,
-    ImageSlice
+    ImageSlice,
+    HomeVideo
   },
   props: {
     slices: {
@@ -41,7 +43,8 @@ export default {
       mappings: {
         work: 'WorkSlider',
         home_slider: 'HomeWorkSlider',
-        image: 'ImageSlice'
+        image: 'ImageSlice',
+        video: 'HomeVideo'
       }
     }
   },
