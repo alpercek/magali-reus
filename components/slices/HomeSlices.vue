@@ -19,7 +19,7 @@
 </template>
 
 <script>
-import HomeWorkSlider from '@/components/slices/HomeWorkSlider.vue'
+// import HomeWorkSlider from '@/components/slices/HomeWorkSlider.vue'
 import WorkSlider from '@/components/slices/WorkSlider.vue'
 import ImageSlice from '@/components/slices/ImageSlice.vue'
 import HomeVideo from '@/components/slices/HomeVideo.vue'
@@ -27,7 +27,7 @@ import HomeVideo from '@/components/slices/HomeVideo.vue'
 export default {
   name: 'Slices',
   components: {
-    HomeWorkSlider,
+    // HomeWorkSlider,
     WorkSlider,
     ImageSlice,
     HomeVideo
@@ -42,7 +42,7 @@ export default {
     return {
       mappings: {
         work: 'WorkSlider',
-        home_slider: 'HomeWorkSlider',
+        // home_slider: 'HomeWorkSlider',
         image: 'ImageSlice',
         video: 'HomeVideo'
       }

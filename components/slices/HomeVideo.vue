@@ -5,7 +5,7 @@
   muted
   playsinline
   loop
-  class="w-full md:w-5/6 h-auto"
+  class="w-full md:pr-6 2xl:pr-0 2xl:w-5/6 max-w-6xl h-auto"
 >
   <source :src="video" type="video/mp4" />
   Your browser does not support the video tag.
@@ -17,12 +17,11 @@ export default {
   name: 'HomeVideo',
   data () {
     return {
-      video: 'test',
+      video: null,
       page: null
     }
   },
   async fetch () {
-    this.video = 'alper'
     this.page = await this.$prismic.api.getSingle('home')
     const videoObject = this.page.data.body.find(item => item.primary && item.primary.video)
     if (videoObject) {
